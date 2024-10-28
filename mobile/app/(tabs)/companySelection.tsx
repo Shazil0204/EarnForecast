@@ -18,7 +18,11 @@ const CompanySelection = () => {
   const fontsLoaded = useFonts();
 
   if (!fontsLoaded) {
-    return null;
+    return (
+      <View style={styles.loadingContainer}>
+        <Text>Loading...</Text>
+      </View>
+    );
   }
 
   const companies: Company[] = [
@@ -94,5 +98,11 @@ const styles = StyleSheet.create({
     color: "#d1d1d1",
     fontSize: 30,
     fontFamily: getFontFamily(true, "extraLight"),
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#193940", // Match your app background
   },
 });

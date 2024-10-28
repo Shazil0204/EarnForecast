@@ -9,6 +9,11 @@ import { router } from "expo-router";
 import useFonts from "../../hooks/useFonts";
 import { getFontFamily } from "../../constants/fontFamily";
 
+type Company = {
+  name: string;
+  id: number;
+};
+
 const CompanySelection = () => {
   const fontsLoaded = useFonts();
 
@@ -16,7 +21,7 @@ const CompanySelection = () => {
     return null;
   }
 
-  const companies = [
+  const companies: Company[] = [
     {
       name: "Just eat",
       id: 1,
@@ -26,100 +31,20 @@ const CompanySelection = () => {
       id: 2,
     },
     {
-      name: "Just eat",
-      id: 1,
+      name: "what will happen if the name is long",
+      id: 3,
     },
     {
-      name: "Wolt",
-      id: 2,
+      name: "nothing",
+      id: 4,
     },
     {
-      name: "Just eat",
-      id: 1,
+      name: "great",
+      id: 5,
     },
     {
-      name: "Wolt",
-      id: 2,
-    },
-    {
-      name: "Just eat",
-      id: 1,
-    },
-    {
-      name: "Wolt",
-      id: 2,
-    },
-    {
-      name: "Just eat",
-      id: 1,
-    },
-    {
-      name: "Wolt",
-      id: 2,
-    },
-    {
-      name: "Just eat",
-      id: 1,
-    },
-    {
-      name: "Wolt",
-      id: 2,
-    },
-    {
-      name: "Just eat",
-      id: 1,
-    },
-    {
-      name: "Wolt",
-      id: 2,
-    },
-    {
-      name: "Just eat",
-      id: 1,
-    },
-    {
-      name: "Wolt",
-      id: 2,
-    },
-    {
-      name: "Just eat",
-      id: 1,
-    },
-    {
-      name: "Wolt",
-      id: 2,
-    },
-    {
-      name: "Just eat",
-      id: 1,
-    },
-    {
-      name: "Wolt",
-      id: 2,
-    },
-    {
-      name: "Just eat",
-      id: 1,
-    },
-    {
-      name: "Wolt",
-      id: 2,
-    },
-    {
-      name: "Just eat",
-      id: 1,
-    },
-    {
-      name: "Wolt",
-      id: 2,
-    },
-    {
-      name: "Just eat",
-      id: 1,
-    },
-    {
-      name: "Wolt",
-      id: 2,
+      name: "added type for security",
+      id: 6,
     },
   ];
 
@@ -140,7 +65,7 @@ const CompanySelection = () => {
               })
             }
           >
-            <Text style={styles.link}>Just Eats</Text>
+            <Text style={styles.link}>{item.name}</Text>
           </TouchableOpacity>
         )}
         showsVerticalScrollIndicator={false}

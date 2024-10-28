@@ -1,23 +1,32 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { router } from "expo-router";
+import { StyleSheet, StatusBar, View } from "react-native";
+import { useEffect } from "react";
+import CompanySelection from "./(tabs)/companySelection";
+import Header from "../components/headerComponents/header";
 
-const CompanySelection = () => {
+const Index = () => {
+  useEffect(() => {
+    // Set the status bar style and background color
+    StatusBar.setBarStyle("light-content"); // Change to light for better contrast with dark background
+    StatusBar.setBackgroundColor("#193940"); // Set background color
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>CompanySelection</Text>
-      <TouchableOpacity onPress={() => router.push("/(tabs)/dataEntry")}>
-        <Text>Just Eats</Text>
-      </TouchableOpacity>
-    </View>
+    <>
+      <Header />
+      <View style={styles.container}>
+        <CompanySelection />
+      </View>
+    </>
   );
 };
 
-export default CompanySelection;
+export default Index;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: "#193940",
+    paddingTop: 20,
+    paddingHorizontal: 20,
   },
 });

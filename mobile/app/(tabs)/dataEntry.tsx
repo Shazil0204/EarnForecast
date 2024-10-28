@@ -1,14 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { View, Text } from "react-native";
+import { useRouter, useLocalSearchParams } from "expo-router";
 
-const DataEntry = () => {
+type DataEntryParams = {
+  exampleData: string;
+  anotherParam: string;
+};
+
+const DataEntryScreen: React.FC = () => {
+  const { exampleData, anotherParam } = useLocalSearchParams<DataEntryParams>();
+
   return (
     <View>
-      <Text>DataEntry</Text>
+      <Text>{exampleData}</Text>
+      <Text>{anotherParam}</Text>
+      {/* Render additional components or data as needed */}
     </View>
   );
 };
 
-export default DataEntry;
-
-const styles = StyleSheet.create({});
+export default DataEntryScreen;

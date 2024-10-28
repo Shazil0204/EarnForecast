@@ -6,8 +6,16 @@ import {
   View,
 } from "react-native";
 import { router } from "expo-router";
+import useFonts from "../../hooks/useFonts";
+import { getFontFamily } from "../../constants/fontFamily";
 
 const CompanySelection = () => {
+  const fontsLoaded = useFonts();
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   const companies = [
     {
       name: "Just eat",
@@ -159,6 +167,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#d1d1d1",
     fontSize: 30,
-    fontWeight: "700",
+    fontFamily: getFontFamily(true, "extraLight"),
   },
 });

@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     gap: 20,
+    backgroundColor: "#193940",
   },
   linkContainer: {
     backgroundColor: "rgba(0,0,0,0.5)",

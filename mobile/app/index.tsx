@@ -1,14 +1,23 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { router } from "expo-router";
 
-const Index = () => {
+const CompanySelection = () => {
   return (
-    <View>
-      <Text>Index</Text>
+    <View style={styles.container}>
+      <Text>CompanySelection</Text>
+      <TouchableOpacity onPress={() => router.push("/(tabs)/dataEntry")}>
+        <Text>Just Eats</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
-export default Index;
+export default CompanySelection;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});

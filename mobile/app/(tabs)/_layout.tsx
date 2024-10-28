@@ -3,9 +3,18 @@ import { Tabs } from "expo-router";
 const MainLayout = () => {
   return (
     <Tabs>
-      <Tabs.Screen name="companySelection" options={{ title: "Companies" }} />
-      <Tabs.Screen name="dataEntry" options={{ title: "Create" }} />
-      <Tabs.Screen name="results" options={{ title: "Result" }} />
+      <Tabs.Screen
+        name="companySelection"
+        options={{ title: "Companies", headerShown: false }}
+      />
+      <Tabs.Screen
+        name="dataEntry"
+        options={{ title: "Create", headerShown: false }}
+      />
+      <Tabs.Screen
+        name="results"
+        options={{ title: "Result", headerShown: false }}
+      />
     </Tabs>
   );
 };

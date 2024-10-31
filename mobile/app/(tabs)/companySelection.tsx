@@ -33,22 +33,6 @@ const CompanySelection = () => {
       name: "Wolt",
       id: 2,
     },
-    {
-      name: "what will happen if the name is long",
-      id: 3,
-    },
-    {
-      name: "nothing",
-      id: 4,
-    },
-    {
-      name: "great",
-      id: 5,
-    },
-    {
-      name: "added type for security",
-      id: 6,
-    },
   ];
 
   return (
@@ -59,11 +43,6 @@ const CompanySelection = () => {
           <TouchableOpacity
             style={styles.linkContainer}
             onPress={() => {
-              console.log("Navigating with params:", {
-                id: item.id,
-                name: item.name,
-              });
-
               router.push({
                 pathname: "/(calc)/calculation",
                 params: { id: item.id, name: item.name },

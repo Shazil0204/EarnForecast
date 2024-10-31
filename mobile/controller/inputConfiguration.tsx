@@ -16,25 +16,41 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
   companyName,
   companyID,
 }) => {
-  const [incomeValue, setIncomeValue] = useState<number | null>(null);
+  const [formData, setFormData] = useState<{
+    income: number | null;
+    km: number | null;
+    startTime: number | null;
+    endTime: number | null;
+  }>({
+    income: null,
+    km: null,
+    startTime: null,
+    endTime: null,
+  });
 
-  const handleIncomeChange = (value: number) => {
-    setIncomeValue(value); // Update the state with the new income value
+  const handleValueChange = (
+    field: keyof typeof formData,
+    value: number | null
+  ) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
   };
 
   const getComponents = () => {
     if (companyID === "1") {
       return (
         <>
-          <InputKM key="km" />
-          <InputTime key="time" />
+          <InputKM onValueChange={(value) => handleValueChange("km", value)} />
+          <InputTime />
         </>
       );
     } else if (companyID === "2") {
       return (
-        <>
-          <InputIncome key="income" onValueChange={handleIncomeChange} />
-        </>
+        <InputIncome
+          onValueChange={(value) => handleValueChange("income", value)}
+        />
       );
     }
     return null;
@@ -58,7 +74,10 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
         {companyName}
       </Text>
       {getComponents()}
-      {incomeValue !== null && <Text>Income: {incomeValue}</Text>}
+      {formData.income !== null && <Text>Income: {formData.income}</Text>}
+      {formData.startTime !== null && <Text>Time: {formData.startTime}</Text>}
+      {formData.endTime !== null && <Text>Time: {formData.endTime}</Text>}
+      {formData.km !== null && <Text>Kilometers: {formData.km}</Text>}
     </View>
   );
 };

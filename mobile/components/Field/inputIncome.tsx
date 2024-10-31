@@ -24,6 +24,8 @@ const InputIncome: React.FC<InputIncomeProps> = ({ onValueChange }) => {
         alignItems: "center",
         padding: 10,
         borderWidth: 1,
+        margin: 4,
+        borderRadius: 25,
       }}
     >
       <Text style={{ fontSize: 20, fontWeight: "500" }}>
@@ -35,6 +37,7 @@ const InputIncome: React.FC<InputIncomeProps> = ({ onValueChange }) => {
           width: "30%",
           padding: 2,
           textAlign: "center",
+          borderRadius: 25,
         }}
         value={income}
         onChangeText={handleChange}

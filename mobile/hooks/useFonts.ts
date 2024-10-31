@@ -8,6 +8,9 @@ const loadFonts = async () => {
     PlaywriteGBSRegular: require("../assets/fonts/PlaywriteGBSRegular.ttf"),
     PlaywriteGBSItalic: require("../assets/fonts/PlaywriteGBSItalic.ttf"),
     PlaywriteGBSExtraLight: require("../assets/fonts/PlaywriteGBSExtraLight.ttf"),
+    PlayfairDisplayBlack: require("../assets/fonts/PlayfairDisplayBlack.ttf"),
+    PlayfairDisplayItalic: require("../assets/fonts/PlayfairDisplayItalic.ttf"),
+    PlayfairDisplayRegular: require("../assets/fonts/PlayfairDisplayRegular.ttf"),
   });
 };
 

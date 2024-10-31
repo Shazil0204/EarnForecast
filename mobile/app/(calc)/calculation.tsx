@@ -1,6 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { useLocalSearchParams } from "expo-router";
+import InputConfiguration from "../../controller/inputConfiguration";
 
 const Calculation = () => {
   const { id, name } = useLocalSearchParams();
@@ -9,8 +10,7 @@ const Calculation = () => {
 
   return (
     <View>
-      <Text>ID: {id}</Text>
-      <Text>Name: {name}</Text>
+      <InputConfiguration companyName={name} companyID={id} />
     </View>
   );
 };

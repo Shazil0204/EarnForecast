@@ -5,9 +5,6 @@ import InputConfiguration from "../../controller/inputConfiguration";
 
 const Calculation = () => {
   const { id, name } = useLocalSearchParams();
-
-  console.log(id, name);
-
   return (
     <View>
       <InputConfiguration companyName={name} companyID={id} />

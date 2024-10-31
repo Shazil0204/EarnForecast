@@ -1,18 +1,39 @@
 import { View, Text } from "react-native";
+import { DynamicComponent } from "../components/view/dynamicComponent";
+import InputIncome from "../components/Field/inputIncome";
+import InputKM from "../components/Field/inputKM";
+import InputTime from "../components/Field/inputTime";
 
 interface InputConfigurationParams {
-  companyID?: number | null;
+  companyName: string | string[];
+  companyID: string | string[];
 }
 
 const InputConfiguration: React.FC<InputConfigurationParams> = ({
+  companyName,
   companyID,
 }) => {
-  console.log(companyID);
+  const getComponents = () => {
+    if (companyID === "1") {
+      return [
+        <>
+          <InputKM />
+          <InputTime />
+        </>,
+      ];
+    } else if (companyID === "2") {
+      return [
+        <>
+          <InputIncome />
+        </>,
+      ];
+    }
+    return [];
+  };
 
   return (
     <View>
-      <Text>Input Configuration</Text>
-      <Text>{companyID}</Text>
+      <DynamicComponent name={companyName} components={getComponents()} />
     </View>
   );
 };

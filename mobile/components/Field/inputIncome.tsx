@@ -1,14 +1,48 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { Text, TextInput, View } from "react-native";
 
-const InputIncome = () => {
+interface InputIncomeProps {
+  onValueChange: (value: number) => void;
+}
+
+const InputIncome: React.FC<InputIncomeProps> = ({ onValueChange }) => {
+  const [income, setIncome] = useState("");
+
+  const handleChange = (text: string) => {
+    const value = parseFloat(text);
+    setIncome(text);
+    if (!isNaN(value)) {
+      onValueChange(value); // Call the callback with the new value
+    }
+  };
+
   return (
-    <View>
-      <Text>InputIncome</Text>
+    <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: 10,
+        borderWidth: 1,
+      }}
+    >
+      <Text style={{ fontSize: 20, fontWeight: "500" }}>
+        Please enter your income:
+      </Text>
+      <TextInput
+        style={{
+          borderWidth: 1,
+          width: "30%",
+          padding: 2,
+          textAlign: "center",
+        }}
+        value={income}
+        onChangeText={handleChange}
+        placeholder="Enter income"
+        keyboardType="numeric"
+      />
     </View>
   );
 };
 
 export default InputIncome;
-
-const styles = StyleSheet.create({});

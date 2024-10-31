@@ -5,9 +5,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { router } from "expo-router";
 import useFonts from "../../hooks/useFonts";
 import { getFontFamily } from "../../constants/fontFamily";
+import LoadingScreen from "../../components/reuseableComponents/loadingScreen";
+import { router } from "expo-router";
 
 type Company = {
   name: string;
@@ -15,16 +16,14 @@ type Company = {
 };
 
 const CompanySelection = () => {
+  // This if to load my font
   const fontsLoaded = useFonts();
 
   if (!fontsLoaded) {
-    return (
-      <View style={styles.loadingContainer}>
-        <Text>Loading...</Text>
-      </View>
-    );
+    return <LoadingScreen />;
   }
 
+  // this is my dummy data for testing
   const companies: Company[] = [
     {
       name: "Just eat",
@@ -59,15 +58,17 @@ const CompanySelection = () => {
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.linkContainer}
-            onPress={() =>
+            onPress={() => {
+              console.log("Navigating with params:", {
+                id: item.id,
+                name: item.name,
+              });
+
               router.push({
-                pathname: "/dataEntry",
-                params: {
-                  exampleData: item.name,
-                  anotherParam: item.id,
-                },
-              })
-            }
+                pathname: "/(calc)/calculation",
+                params: { id: item.id, name: item.name },
+              });
+            }}
           >
             <Text style={styles.link}>{item.name}</Text>
           </TouchableOpacity>
@@ -83,7 +84,7 @@ export default CompanySelection;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    gap: 20,
+    padding: 20,
     backgroundColor: "#193940",
   },
   linkContainer: {
@@ -91,18 +92,12 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 25,
     borderWidth: 1,
-    marginVertical: 2,
+    marginVertical: 5,
   },
   link: {
     textAlign: "center",
     color: "#d1d1d1",
     fontSize: 30,
     fontFamily: getFontFamily(true, "extraLight"),
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#193940", // Match your app background
   },
 });

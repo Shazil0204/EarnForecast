@@ -9,22 +9,18 @@ import { useEffect } from "react";
 import { router } from "expo-router";
 import useFonts from "../hooks/useFonts";
 import { getFontFamily } from "../constants/fontFamily";
+import LoadingScreen from "../components/reuseableComponents/loadingScreen";
 
 const Index = () => {
   useEffect(() => {
-    // Set the status bar style and background color
-    StatusBar.setBarStyle("light-content"); // Change to light for better contrast with dark background
-    StatusBar.setBackgroundColor("#193940"); // Set background color
+    StatusBar.setBarStyle("light-content");
+    StatusBar.setBackgroundColor("#193940");
   }, []);
 
   const fontsLoaded = useFonts();
 
   if (!fontsLoaded) {
-    return (
-      <View style={styles.loadingContainer}>
-        <Text>Loading...</Text>
-      </View>
-    );
+    return <LoadingScreen />;
   }
 
   return (
@@ -89,11 +85,5 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     fontSize: 25,
     fontFamily: getFontFamily(true, "italic"),
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#193940", // Match your app background
   },
 });

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
-import InputIncome from "../components/Field/income";
-import InputKM from "../components/Field/km";
-import InputTime from "../components/Field/time";
-import InputDate from "../components/Field/date";
+import InputIncome from "../components/field/income";
+import InputKM from "../components/field/km";
+import InputTime from "../components/field/time";
+import InputDate from "../components/field/date";
 import useFonts from "../hooks/useFonts";
 import { getFontFamily } from "../constants/fontFamily";
 import LoadingScreen from "../components/reuseableComponents/loadingScreen";

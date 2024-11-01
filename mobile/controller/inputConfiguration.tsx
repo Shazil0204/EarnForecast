@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
-import InputIncome from "../components/Field/inputIncome";
-import InputKM from "../components/Field/inputKM";
-import InputTime from "../components/Field/inputTime";
+import InputIncome from "../components/Field/income";
+import InputKM from "../components/Field/km";
+import InputTime from "../components/Field/time";
+import InputDate from "../components/Field/date";
 import useFonts from "../hooks/useFonts";
 import { getFontFamily } from "../constants/fontFamily";
 import LoadingScreen from "../components/reuseableComponents/loadingScreen";
@@ -19,18 +20,20 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
   const [formData, setFormData] = useState<{
     income: number | null;
     km: number | null;
-    startTime: number | null;
-    endTime: number | null;
+    date: Date | null;
+    startTime: Date | null;
+    endTime: Date | null;
   }>({
     income: null,
     km: null,
+    date: null,
     startTime: null,
     endTime: null,
   });
 
   const handleValueChange = (
     field: keyof typeof formData,
-    value: number | null
+    value: number | Date | null
   ) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -43,7 +46,17 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
       return (
         <>
           <InputKM onValueChange={(value) => handleValueChange("km", value)} />
-          <InputTime />
+          <InputDate
+            onDateChange={(value) => handleValueChange("date", value)}
+          />
+          <InputTime
+            onTimeChange={(value) => handleValueChange("startTime", value)}
+            isStartTime={true}
+          />
+          <InputTime
+            onTimeChange={(value) => handleValueChange("endTime", value)}
+            isStartTime={false}
+          />
         </>
       );
     } else if (companyID === "2") {
@@ -75,8 +88,15 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
       </Text>
       {getComponents()}
       {formData.income !== null && <Text>Income: {formData.income}</Text>}
-      {formData.startTime !== null && <Text>Time: {formData.startTime}</Text>}
-      {formData.endTime !== null && <Text>Time: {formData.endTime}</Text>}
+      {formData.date !== null && (
+        <Text>Date: {formData.date.toLocaleDateString()}</Text>
+      )}
+      {formData.startTime !== null && (
+        <Text>Time: {formData.startTime.toLocaleTimeString()}</Text>
+      )}
+      {formData.endTime !== null && (
+        <Text>Time: {formData.endTime.toLocaleTimeString()}</Text>
+      )}
       {formData.km !== null && <Text>Kilometers: {formData.km}</Text>}
     </View>
   );

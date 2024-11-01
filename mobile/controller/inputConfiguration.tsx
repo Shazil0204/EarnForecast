@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 import InputIncome from "../components/field/income";
 import InputKM from "../components/field/km";
 import InputTime from "../components/field/time";
@@ -8,6 +8,7 @@ import useFonts from "../hooks/useFonts";
 import { getFontFamily } from "../constants/fontFamily";
 import LoadingScreen from "../components/loadingScreen";
 import BackBTN from "../components/basic/backBTN";
+import DataCalculation from "../components/view/DataCalculation";
 
 interface InputConfigurationParams {
   companyName: string | string[];
@@ -18,6 +19,8 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
   companyName,
   companyID,
 }) => {
+  const [showDataCalc, setShowDataCalc] = useState(false);
+
   const [formData, setFormData] = useState<{
     income: number | null;
     km: number | null;
@@ -44,34 +47,42 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
 
   const getComponents = () => {
     if (companyID === "1") {
-      return (
-        <>
-          <InputKM onValueChange={(value) => handleValueChange("km", value)} />
-          <InputIncome
-            onValueChange={(value) => handleValueChange("income", value)}
-          />
-          <InputDate
-            onDateChange={(value) => handleValueChange("date", value)}
-          />
-          <InputTime
-            onTimeChange={(value) => handleValueChange("startTime", value)}
-            isStartTime={true}
-          />
-          <InputTime
-            onTimeChange={(value) => handleValueChange("endTime", value)}
-            isStartTime={false}
-          />
-        </>
-      );
-    } else if (companyID === "2") {
-      return (
+      return [
+        <InputKM
+          key="km"
+          onValueChange={(value) => handleValueChange("km", value)}
+        />,
         <InputIncome
+          key="income"
           onValueChange={(value) => handleValueChange("income", value)}
-        />
-      );
+        />,
+        <InputDate
+          key="date"
+          onDateChange={(value) => handleValueChange("date", value)}
+        />,
+        <InputTime
+          key="startTime"
+          onTimeChange={(value) => handleValueChange("startTime", value)}
+          isStartTime={true}
+        />,
+        <InputTime
+          key="endTime"
+          onTimeChange={(value) => handleValueChange("endTime", value)}
+          isStartTime={false}
+        />,
+      ];
+    } else if (companyID === "2") {
+      return [
+        <InputIncome
+          key="income"
+          onValueChange={(value) => handleValueChange("income", value)}
+        />,
+      ];
     }
-    return null;
+    // Return an empty array instead of null for any other companyID
+    return [];
   };
+
   const fontsLoaded = useFonts();
 
   if (!fontsLoaded) {
@@ -80,7 +91,6 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
 
   return (
     <>
-      <BackBTN folderName="tabs" componentName="companySelection" />
       <View>
         <Text
           style={{
@@ -93,7 +103,31 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
         >
           {companyName}
         </Text>
-        {getComponents()}
+
+        {showDataCalc ? (
+          <DataCalculation />
+        ) : (
+          <>
+            <BackBTN folderName="tabs" componentName="companySelection" />
+            {getComponents()}
+            <View
+              style={{
+                marginTop: 50,
+                margin: 5,
+                borderRadius: 25,
+                borderWidth: 2,
+                overflow: "hidden",
+              }}
+            >
+              <Button
+                onPress={() => {
+                  setShowDataCalc(true);
+                }}
+                title="start Calculation"
+              />
+            </View>
+          </>
+        )}
       </View>
     </>
   );

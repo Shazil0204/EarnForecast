@@ -24,6 +24,7 @@ const InputKM: React.FC<InputKMProps> = ({ onValueChange }) => {
         borderWidth: 1,
         margin: 4,
         borderRadius: 25,
+        backgroundColor: "#fff",
       }}
     >
       <Text style={{ fontSize: 20, fontWeight: "500" }}>

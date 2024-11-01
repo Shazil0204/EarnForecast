@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { router } from "expo-router";
 import useFonts from "../hooks/useFonts";
 import { getFontFamily } from "../constants/fontFamily";
-import LoadingScreen from "../components/reuseableComponents/loadingScreen";
+import LoadingScreen from "../components/loadingScreen";
 
 const Index = () => {
   useEffect(() => {

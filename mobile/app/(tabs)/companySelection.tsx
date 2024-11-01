@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import useFonts from "../../hooks/useFonts";
 import { getFontFamily } from "../../constants/fontFamily";
-import LoadingScreen from "../../components/reuseableComponents/loadingScreen";
+import LoadingScreen from "../../components/loadingScreen";
 import { router } from "expo-router";
 
 type Company = {
@@ -26,12 +26,16 @@ const CompanySelection = () => {
   // this is my dummy data for testing
   const companies: Company[] = [
     {
-      name: "Just eat",
+      name: "Test",
       id: 1,
     },
     {
-      name: "Wolt",
+      name: "Just eat",
       id: 2,
+    },
+    {
+      name: "Wolt",
+      id: 3,
     },
   ];
 

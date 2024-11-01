@@ -6,7 +6,7 @@ import InputTime from "../components/field/time";
 import InputDate from "../components/field/date";
 import useFonts from "../hooks/useFonts";
 import { getFontFamily } from "../constants/fontFamily";
-import LoadingScreen from "../components/reuseableComponents/loadingScreen";
+import LoadingScreen from "../components/loadingScreen";
 
 interface InputConfigurationParams {
   companyName: string | string[];
@@ -46,6 +46,9 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
       return (
         <>
           <InputKM onValueChange={(value) => handleValueChange("km", value)} />
+          <InputIncome
+            onValueChange={(value) => handleValueChange("income", value)}
+          />
           <InputDate
             onDateChange={(value) => handleValueChange("date", value)}
           />
@@ -79,6 +82,8 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
     <View>
       <Text
         style={{
+          color: "#fff",
+          marginBottom: 20,
           fontSize: 50,
           textAlign: "center",
           fontFamily: getFontFamily(true, "PlayBlack"),
@@ -87,17 +92,6 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
         {companyName}
       </Text>
       {getComponents()}
-      {formData.income !== null && <Text>Income: {formData.income}</Text>}
-      {formData.date !== null && (
-        <Text>Date: {formData.date.toLocaleDateString()}</Text>
-      )}
-      {formData.startTime !== null && (
-        <Text>Time: {formData.startTime.toLocaleTimeString()}</Text>
-      )}
-      {formData.endTime !== null && (
-        <Text>Time: {formData.endTime.toLocaleTimeString()}</Text>
-      )}
-      {formData.km !== null && <Text>Kilometers: {formData.km}</Text>}
     </View>
   );
 };

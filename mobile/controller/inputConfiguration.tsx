@@ -7,6 +7,7 @@ import InputDate from "../components/field/date";
 import useFonts from "../hooks/useFonts";
 import { getFontFamily } from "../constants/fontFamily";
 import LoadingScreen from "../components/loadingScreen";
+import BackBTN from "../components/basic/backBTN";
 
 interface InputConfigurationParams {
   companyName: string | string[];
@@ -71,7 +72,6 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
     }
     return null;
   };
-
   const fontsLoaded = useFonts();
 
   if (!fontsLoaded) {
@@ -79,20 +79,23 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
   }
 
   return (
-    <View>
-      <Text
-        style={{
-          color: "#fff",
-          marginBottom: 20,
-          fontSize: 50,
-          textAlign: "center",
-          fontFamily: getFontFamily(true, "PlayBlack"),
-        }}
-      >
-        {companyName}
-      </Text>
-      {getComponents()}
-    </View>
+    <>
+      <BackBTN folderName="tabs" componentName="companySelection" />
+      <View>
+        <Text
+          style={{
+            color: "#fff",
+            marginBottom: 20,
+            fontSize: 50,
+            textAlign: "center",
+            fontFamily: getFontFamily(true, "PlayBlack"),
+          }}
+        >
+          {companyName}
+        </Text>
+        {getComponents()}
+      </View>
+    </>
   );
 };
 

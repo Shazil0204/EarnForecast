@@ -4,11 +4,12 @@ import InputIncome from "../components/field/income";
 import InputKM from "../components/field/km";
 import InputTime from "../components/field/time";
 import InputDate from "../components/field/date";
+import InputTip from "../components/field/tip";
 import useFonts from "../hooks/useFonts";
 import { getFontFamily } from "../constants/fontFamily";
 import LoadingScreen from "../components/loadingScreen";
 import BackBTN from "../components/basic/backBTN";
-import DataCalculation from "../components/view/DataCalculation";
+import DataCalculation from "../components/view/dataCalculation";
 
 interface InputConfigurationParams {
   companyName: string | string[];
@@ -24,12 +25,14 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
   const [formData, setFormData] = useState<{
     income: number | null;
     km: number | null;
+    tip: number | null;
     date: Date | null;
     startTime: Date | null;
     endTime: Date | null;
   }>({
     income: null,
     km: null,
+    tip: null,
     date: null,
     startTime: null,
     endTime: null,
@@ -70,12 +73,20 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
           onTimeChange={(value) => handleValueChange("endTime", value)}
           isStartTime={false}
         />,
+        <InputTip
+          key="tip"
+          onValueChange={(value) => handleValueChange("tip", value)}
+        />,
       ];
-    } else if (companyID === "2") {
+    } else if (companyID === "3") {
       return [
         <InputIncome
           key="income"
           onValueChange={(value) => handleValueChange("income", value)}
+        />,
+        <InputTip
+          key="tip"
+          onValueChange={(value) => handleValueChange("tip", value)}
         />,
       ];
     }
@@ -105,7 +116,14 @@ const InputConfiguration: React.FC<InputConfigurationParams> = ({
         </Text>
 
         {showDataCalc ? (
-          <DataCalculation />
+          <DataCalculation
+            startTime={formData.startTime}
+            endTime={formData.endTime}
+            income={formData.income}
+            date={formData.date}
+            tip={formData.tip}
+            km={formData.km}
+          />
         ) : (
           <>
             <BackBTN folderName="tabs" componentName="companySelection" />

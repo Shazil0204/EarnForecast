@@ -1,0 +1,14 @@
+{
+  "companies": [
+    {
+      "name": "JustEats",
+      "totalComponents": 5,
+      "components": ["start time", "end time", "date", "km", "tip"]
+    },
+    {
+      "name": "Wolt",
+      "totalComponents": 3,
+      "components": ["date", "tip", "income"]
+    }
+  ]
+}
